@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.CustomerQueries;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.CustomerQueries.Requests;
 
 namespace Subasi.CustomerMS.API.Controllers
 {
@@ -44,7 +44,7 @@ namespace Subasi.CustomerMS.API.Controllers
             if (result.IsValid)
             {
                 await _mediator.Send(request);
-                return Created("Customer created successfully.", request);
+                return Created("", request);
             }
             return BadRequest(result.Errors);
         }
@@ -52,26 +52,32 @@ namespace Subasi.CustomerMS.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(UpdateCustomerCommandRequest request, int id)
         {
-            if (id != request.ID) return BadRequest("Route ID and Body ID are not matching.");
-            var result = _updateCustomerCommandRequestValidator.Validate(request);
-            if(result.IsValid)
+            if (id != request.ID)
             {
-                await _mediator.Send(request);
-                return NoContent();
+                return BadRequest("Route ID and Body ID are not matching.");
             }
-            return BadRequest(result.Errors);
-            
+            var validatorResult = _updateCustomerCommandRequestValidator.Validate(request);
+            if(validatorResult.IsValid)
+            {
+                var handlerResult = await _mediator.Send(request);
+                if(handlerResult.IsSucceed)
+                {
+                    return Accepted();
+                }
+                return NotFound();   
+            }
+            return BadRequest(validatorResult.Errors);   
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteCustomerCommandRequest(id));
-            if(result == Unit.Value)
+            if(result.IsSucceed)
             {
-                return NotFound("Customer not found.");
+                return NoContent();
             }
-            return NoContent();
+            return NotFound();
         }
     }
 }

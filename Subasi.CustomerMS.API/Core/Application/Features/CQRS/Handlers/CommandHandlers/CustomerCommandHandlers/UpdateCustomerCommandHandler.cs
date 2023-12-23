@@ -1,20 +1,20 @@
 ﻿using MediatR;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands;
-using Subasi.CustomerMS.API.Core.Application.Interface;
-using Subasi.CustomerMS.API.Core.Domain.Concrete;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Responses;
+using Subasi.CustomerMS.API.Core.Application.Interfaces;
 
 namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Handlers.CommandHandlers.CustomerCommandHandlers
 {
-    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommandRequest>
+    public class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommandRequest, UpdateCustomerCommandResponse>
     {
-        private readonly IRepository<Customer> _repository;
+        private readonly ICustomerRepository _repository;
 
-        public UpdateCustomerCommandHandler(IRepository<Customer> repository)
+        public UpdateCustomerCommandHandler(ICustomerRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdateCustomerCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateCustomerCommandResponse> Handle(UpdateCustomerCommandRequest request, CancellationToken cancellationToken)
         {
             var updatedCustomer = await _repository.GetByIdAsync(request.ID);
             if (updatedCustomer != null)
@@ -24,8 +24,15 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Handlers.CommandH
                 updatedCustomer.Email = request.Email;
                 updatedCustomer.PhoneNumber = request.PhoneNumber;
                 await _repository.UpdateAsync(updatedCustomer);
+                return new UpdateCustomerCommandResponse()
+                {
+                    IsSucceed = true,
+                };
             }
-            return Unit.Value;
+            return new UpdateCustomerCommandResponse()
+            {
+                IsSucceed = false
+            };
         }
     }
 }

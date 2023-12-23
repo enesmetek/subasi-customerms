@@ -15,7 +15,7 @@ namespace Subasi.CustomerMS.API.Persistance.Repositories
 
         public async Task<Customer?> GetCustomerWithAddress(int id)
         {
-            return await _context.Set<Customer>().Where(x => x.ID == id).Include(x => x.Addresses).FirstOrDefaultAsync();
+            return await _context.Set<Customer>().Where(x => x.ID == id).Include(x => x.Addresses).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<List<Customer>?> GetAllCustomersWithAddresses()

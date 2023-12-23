@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Requests;
 
 namespace Subasi.CustomerMS.API.Core.Application.ValidationRules.CommandRequestValidators.AddressCommandRequestValidators
 {

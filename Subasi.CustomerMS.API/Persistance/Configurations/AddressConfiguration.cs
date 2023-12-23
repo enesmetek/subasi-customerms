@@ -11,8 +11,11 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
         {
             // Entity Configurations
             builder.Property(x => x.AddressLine).IsRequired();
+            builder.Property(x => x.AddressLine).HasMaxLength(100);
             builder.Property(x => x.District).IsRequired();
+            builder.Property(x => x.District).HasMaxLength(100);
             builder.Property(x => x.Province).IsRequired();
+            builder.Property(x => x.Province).HasMaxLength(100);
             builder.Property(x => x.CustomerID).IsRequired();
 
             // Enum Conversion

@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Subasi.CustomerMS.API.Core.Application.Interface;
 using Subasi.CustomerMS.API.Core.Application.Interfaces;
 using Subasi.CustomerMS.API.Core.Application.Mappings.AutoMapper.ProfileHelper;
+using Subasi.CustomerMS.API.Core.Application.Middlewares;
 using Subasi.CustomerMS.API.Core.Application.ValidationRules.DependencyResolver;
 using Subasi.CustomerMS.API.Persistance.Context;
 using Subasi.CustomerMS.API.Persistance.Repositories;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Subasi.CustomerMS.API
 {
@@ -35,17 +35,17 @@ namespace Subasi.CustomerMS.API
                 opt.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
             });
 
-            // *** Repository Services ***
+            // *** Services ***
+            builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped(typeof(ICustomerRepository), typeof(CustomerRepository));
             builder.Services.AddScoped(typeof(IAddressRepository), typeof(AddressRepository));
             builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            // *** AutoMapper ***
-            var profiles = ProfileHelper.GetProfiles();
+            // *** AutoMapper Profiles ***
             builder.Services.AddAutoMapper(opt =>
             {
-                opt.AddProfiles(profiles);  
+                opt.AddProfiles(ProfileHelper.GetProfiles());  
             });
 
             var app = builder.Build();
@@ -59,6 +59,8 @@ namespace Subasi.CustomerMS.API
 
             app.UseAuthorization();
 
+            // Global Exception Handling Middleware
+            app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
             app.MapControllers();
 

@@ -2,9 +2,9 @@
 using Newtonsoft.Json.Converters;
 using Subasi.CustomerMS.API.Core.Domain.Enums;
 
-namespace Subasi.CustomerMS.API.Core.Application.DTOs.AddressDTOs
+namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.AddressQueries.Responses
 {
-    public class AddressListDTO
+    public class AddressQueryResponse
     {
         public int ID { get; set; }
 

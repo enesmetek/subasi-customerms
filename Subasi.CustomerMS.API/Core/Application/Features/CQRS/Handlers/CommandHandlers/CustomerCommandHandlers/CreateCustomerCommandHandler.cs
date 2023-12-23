@@ -1,29 +1,27 @@
-﻿using MediatR;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands;
-using Subasi.CustomerMS.API.Core.Application.Interface;
+﻿using AutoMapper;
+using MediatR;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Responses;
+using Subasi.CustomerMS.API.Core.Application.Interfaces;
 using Subasi.CustomerMS.API.Core.Domain.Concrete;
 
 namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Handlers.CommandHandlers.CustomerCommandHandlers
 {
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommandRequest>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommandRequest, CreateCustomerCommandResponse>
     {
-        private readonly IRepository<Customer> _repository;
+        private readonly ICustomerRepository _repository;
+        private readonly IMapper _mapper;
 
-        public CreateCustomerCommandHandler(IRepository<Customer> repository)
+        public CreateCustomerCommandHandler(ICustomerRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public async Task<Unit> Handle(CreateCustomerCommandRequest request, CancellationToken cancellationToken)
+        public async Task<CreateCustomerCommandResponse> Handle(CreateCustomerCommandRequest request, CancellationToken cancellationToken)
         {
-            await _repository.CreateAsync(new Customer
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber
-            });
-            return Unit.Value;
+            await _repository.CreateAsync(_mapper.Map<Customer>(request));
+            return new CreateCustomerCommandResponse();
         }
     }
 }

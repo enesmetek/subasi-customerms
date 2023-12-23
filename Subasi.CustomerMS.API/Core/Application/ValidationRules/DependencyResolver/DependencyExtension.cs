@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Requests;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
 using Subasi.CustomerMS.API.Core.Application.ValidationRules.CommandRequestValidators.AddressCommandRequestValidators;
 using Subasi.CustomerMS.API.Core.Application.ValidationRules.CommandRequestValidators.CustomerCommandRequestValidators;
 

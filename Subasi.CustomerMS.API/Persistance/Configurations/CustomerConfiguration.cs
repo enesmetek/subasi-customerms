@@ -11,9 +11,13 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
             // Entity Configurations
             builder.Property(x => x.ID).IsRequired();
             builder.Property(x => x.FirstName).IsRequired();
+            builder.Property(x => x.FirstName).HasMaxLength(50);
             builder.Property(x => x.LastName).IsRequired();
+            builder.Property(x => x.LastName).HasMaxLength(50);
             builder.Property(x => x.Email).IsRequired();
+            builder.Property(x => x.Email).HasMaxLength(75);
             builder.Property(x => x.PhoneNumber).IsRequired();
+            builder.Property(x => x.PhoneNumber).HasMaxLength(50);
 
             // Data Seed
             builder.HasData(new Customer[]

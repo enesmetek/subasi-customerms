@@ -1,20 +1,20 @@
 ﻿using MediatR;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands;
-using Subasi.CustomerMS.API.Core.Application.Interface;
-using Subasi.CustomerMS.API.Core.Domain.Concrete;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Requests;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Responses;
+using Subasi.CustomerMS.API.Core.Application.Interfaces;
 
 namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Handlers.CommandHandlers.AddressCommandHandlers
 {
-    public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommandRequest>
+    public class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommandRequest, UpdateAddressCommandResponse>
     {
-        private readonly IRepository<Address> _repository;
+        private readonly IAddressRepository _repository;
 
-        public UpdateAddressCommandHandler(IRepository<Address> repository)
+        public UpdateAddressCommandHandler(IAddressRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<Unit> Handle(UpdateAddressCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateAddressCommandResponse> Handle(UpdateAddressCommandRequest request, CancellationToken cancellationToken)
         {
             var updatedAddress = await _repository.GetByIdAsync(request.ID);
             if (updatedAddress != null)
@@ -24,8 +24,15 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Handlers.CommandH
                 updatedAddress.Province = request.Province;
                 updatedAddress.CustomerID = request.CustomerID;
                 await _repository.UpdateAsync(updatedAddress);
+                return new UpdateAddressCommandResponse()
+                {
+                    IsSucceed = true,
+                };
             }
-            return Unit.Value;
+            return new UpdateAddressCommandResponse()
+            {
+                IsSucceed = false
+            };
         }
     }
 }

@@ -37,11 +37,6 @@ namespace Subasi.CustomerMS.API.Persistance.Repositories
             return await _context.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
-        public async Task<List<T>> GetAllByFilerAsync(Expression<Func<T, bool>> filer)
-        {
-            return await _context.Set<T>().AsNoTracking().Where(filer).ToListAsync();
-        }
-
         public async Task<T?> GetByIdAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Subasi.CustomerMS.API.Core.Domain.Concrete;
 using Subasi.CustomerMS.API.Persistance.Configurations;
 

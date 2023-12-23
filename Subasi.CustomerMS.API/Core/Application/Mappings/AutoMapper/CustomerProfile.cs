@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Subasi.CustomerMS.API.Core.Application.DTOs.CustomerDTOs;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.CustomerQueries.Responses;
 using Subasi.CustomerMS.API.Core.Domain.Concrete;
 
 namespace Subasi.CustomerMS.API.Core.Application.Mappings.AutoMapper
@@ -8,7 +9,8 @@ namespace Subasi.CustomerMS.API.Core.Application.Mappings.AutoMapper
     {
         public CustomerProfile()
         {
-            CreateMap<CustomerListDTO, Customer>().ReverseMap();
+            CreateMap<CustomerQueryResponse, Customer>().ReverseMap();
+            CreateMap<CreateCustomerCommandRequest, Customer>().ReverseMap();
         }
     }
 }

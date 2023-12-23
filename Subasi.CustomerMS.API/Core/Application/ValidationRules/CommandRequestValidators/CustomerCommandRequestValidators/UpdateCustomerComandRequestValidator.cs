@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands;
+using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
 using System.Text.RegularExpressions;
 
 namespace Subasi.CustomerMS.API.Core.Application.ValidationRules.CommandRequestValidators.CustomerCommandRequestValidators
@@ -25,7 +25,7 @@ namespace Subasi.CustomerMS.API.Core.Application.ValidationRules.CommandRequestV
                 .NotEmpty().WithMessage("Email address required.")
                 .EmailAddress().WithMessage("A valid email address is required.")
                 .MinimumLength(8).WithMessage("Email address must not be less than 8 characters.")
-                .MaximumLength(50).WithMessage("Emaill address must not exceed 50 characters.");
+                .MaximumLength(75).WithMessage("Emaill address must not exceed 75 characters.");
 
             RuleFor(x => x.PhoneNumber)
                 .NotEmpty()

@@ -62,7 +62,7 @@ namespace Subasi.CustomerMS.API.Controllers
                 var handlerResult = await _mediator.Send(request);
                 if(handlerResult.IsSucceed)
                 {
-                    return Accepted();
+                    return NoContent();
                 }
                 return NotFound();   
             }

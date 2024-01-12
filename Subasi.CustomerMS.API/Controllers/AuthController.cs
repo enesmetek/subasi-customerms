@@ -22,15 +22,13 @@ namespace Subasi.CustomerMS.API.Controllers
     {
         public static AppUser user = new();
         private readonly IRepository<AppUser> _appUserRepository;
-        private readonly IRepository<AppRole> _appRoleRepository;
         private readonly IAppUserService _appUserService;
         private readonly IMapper _mapper;
 
-        public AuthController(IAppUserService appUserService, IRepository<AppUser> appUserRepository, IRepository<AppRole> appRoleRepository, IMapper mapper)
+        public AuthController(IAppUserService appUserService, IRepository<AppUser> appUserRepository, IMapper mapper)
         {
             _appUserService = appUserService;
             _appUserRepository = appUserRepository;
-            _appRoleRepository = appRoleRepository;
             _mapper = mapper;
         }
 
@@ -54,7 +52,7 @@ namespace Subasi.CustomerMS.API.Controllers
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
                     AppRoleID = (int)RoleType.Member,
-                    AppRoleName = "Member"
+                    AppRoleName = "Member"  
                 };
                 
                 await _appUserRepository.CreateAsync(newUser);

@@ -17,8 +17,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 name: "AppRoles",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Definition = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -30,8 +29,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: false),
@@ -46,15 +44,14 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 name: "AppUsers",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TokenCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TokenExpires = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    AppRoleID = table.Column<int>(type: "int", nullable: false),
+                    AppRoleID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AppRoleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -72,13 +69,12 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 name: "Addresses",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AddressType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressLine = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     District = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Province = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: false)
+                    CustomerID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,8 +92,8 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 columns: new[] { "ID", "Definition" },
                 values: new object[,]
                 {
-                    { 1, "Admin" },
-                    { 2, "Member" }
+                    { new Guid("0910659f-670a-47d2-aa00-6a343dbaae48"), "Member" },
+                    { new Guid("b1803d37-f260-4135-afb2-b44ae26c58ed"), "Admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -105,12 +101,12 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 columns: new[] { "ID", "Email", "FirstName", "LastName", "PhoneNumber" },
                 values: new object[,]
                 {
-                    { 1, "emkafali@gmail.com", "Enes Mete", "Kafali", "553-580-9653" },
-                    { 2, "tktaskiran@gmail.com", "Tolga Kagan", "Taskiran", "546-602-3272" },
-                    { 3, "temelatanc@gmail.com", "Can", "Temelatan", "533-559-0511" },
-                    { 4, "yildirimgul@gmail.com", "Yildirim", "Gul", "545-332-2239" },
-                    { 5, "kafali22@gmail.com", "Mustafa", "Kafali", "542-366-6688" },
-                    { 6, "mert@outlook.com", "Mert", "Kafali", "546-297-5518" }
+                    { new Guid("22d85348-00dc-4ec4-a5f4-e7db6dc5c652"), "kafali22@gmail.com", "Mustafa", "Kafali", "542-366-6688" },
+                    { new Guid("29127229-8503-4e7b-b91f-249ef2a6161c"), "yildirimgul@gmail.com", "Yildirim", "Gul", "545-332-2239" },
+                    { new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"), "emkafali@gmail.com", "Enes Mete", "Kafali", "553-580-9653" },
+                    { new Guid("58a451ed-ae3e-40fe-b118-708c0f9872f4"), "tktaskiran@gmail.com", "Tolga Kagan", "Taskiran", "546-602-3272" },
+                    { new Guid("611165a4-b4c1-4ce4-aca5-2d70ee35db5a"), "mert@outlook.com", "Mert", "Kafali", "546-297-5518" },
+                    { new Guid("7b6d363e-6fe9-4955-b8bb-36b4d535e3a6"), "temelatanc@gmail.com", "Can", "Temelatan", "533-559-0511" }
                 });
 
             migrationBuilder.InsertData(
@@ -118,10 +114,10 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                 columns: new[] { "ID", "AddressLine", "AddressType", "CustomerID", "District", "Province" },
                 values: new object[,]
                 {
-                    { 1, "Yavrukus St. No:19/1", "Home", 1, "Sisli", "Istanbul" },
-                    { 2, "Lalegul St. No:5", "Office", 1, "Kagithane", "Istanbul" },
-                    { 3, "Ali Riza Efendi St. No:22", "Home", 2, "Kesan", "Edirne" },
-                    { 4, "Seher St. No:16/60", "Home", 6, "Maltepe", "Istanbul" }
+                    { new Guid("1f4cba7e-dd74-4e76-9a92-ca766a4b70d7"), "Ali Riza Efendi St. No:22", "Home", new Guid("58a451ed-ae3e-40fe-b118-708c0f9872f4"), "Kesan", "Edirne" },
+                    { new Guid("7aff0742-36d6-4630-b1b4-68538ad56d64"), "Seher St. No:16/60", "Home", new Guid("611165a4-b4c1-4ce4-aca5-2d70ee35db5a"), "Maltepe", "Istanbul" },
+                    { new Guid("c1b4eeb9-dfec-4e38-b0e8-311db9edfec4"), "Lalegul St. No:5", "Office", new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"), "Kagithane", "Istanbul" },
+                    { new Guid("ffab8c77-239f-4d24-ba12-5d9aca99dbb4"), "Yavrukus St. No:19/1", "Home", new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"), "Sisli", "Istanbul" }
                 });
 
             migrationBuilder.CreateIndex(

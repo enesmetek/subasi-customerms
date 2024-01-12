@@ -35,7 +35,7 @@ namespace Subasi.CustomerMS.API.Controllers
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [Authorize(Roles = "Admin, Member")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var result = await _mediator.Send(new GetAddressQueryRequest(id));
             return result == null ? NotFound() : Ok(result);
@@ -44,7 +44,7 @@ namespace Subasi.CustomerMS.API.Controllers
         [HttpGet]
         [Route("api/Customers/{id}/[controller]")]
         [Authorize(Roles = "Admin, Member")]
-        public async Task<IActionResult> GetByCustomerID(int id)
+        public async Task<IActionResult> GetByCustomerID(Guid id)
         {
             var result = await _mediator.Send(new GetAllAddressesByCustomerIDQueryRequest(id));
             return Ok(result);
@@ -67,7 +67,7 @@ namespace Subasi.CustomerMS.API.Controllers
         [HttpPut]
         [Authorize(Roles = "Admin")]
         [Route("api/[controller]/{id}")]
-        public async Task<IActionResult> Update(UpdateAddressCommandRequest request, int id)
+        public async Task<IActionResult> Update(UpdateAddressCommandRequest request, Guid id)
         {
             if (id != request.ID)
             {
@@ -89,7 +89,7 @@ namespace Subasi.CustomerMS.API.Controllers
         [HttpDelete]
         [Authorize(Roles = "Admin")]
         [Route("api/[controller]/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeleteAddressCommandRequest(id));
             if(result.IsSucceed)

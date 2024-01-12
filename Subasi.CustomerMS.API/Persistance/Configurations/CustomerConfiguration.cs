@@ -24,7 +24,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
             {
                 new()
                 {
-                    ID = 1,
+                    ID = new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"),
                     FirstName = "Enes Mete",
                     LastName = "Kafali",
                     Email = "emkafali@gmail.com",
@@ -32,7 +32,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                 },
                 new()
                 {
-                    ID = 2,
+                    ID = new Guid("58a451ed-ae3e-40fe-b118-708c0f9872f4"),
                     FirstName = "Tolga Kagan",
                     LastName = "Taskiran",
                     Email = "tktaskiran@gmail.com",
@@ -40,7 +40,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                 },
                 new()
                 {
-                    ID = 3,
+                    ID = new Guid("7b6d363e-6fe9-4955-b8bb-36b4d535e3a6"),
                     FirstName = "Can",
                     LastName = "Temelatan",
                     Email = "temelatanc@gmail.com",
@@ -48,7 +48,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                 },
                 new()
                 {
-                    ID = 4,
+                    ID = new Guid("29127229-8503-4e7b-b91f-249ef2a6161c"),
                     FirstName = "Yildirim",
                     LastName = "Gul",
                     Email = "yildirimgul@gmail.com",
@@ -56,7 +56,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                 },
                 new()
                 {
-                    ID = 5,
+                    ID = new Guid("22d85348-00dc-4ec4-a5f4-e7db6dc5c652"),
                     FirstName = "Mustafa",
                     LastName = "Kafali",
                     Email = "kafali22@gmail.com",
@@ -64,7 +64,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                 },
                 new()
                 {
-                    ID= 6,
+                    ID= new Guid("611165a4-b4c1-4ce4-aca5-2d70ee35db5a"),
                     FirstName = "Mert",
                     LastName = "Kafali",
                     Email = "mert@outlook.com",

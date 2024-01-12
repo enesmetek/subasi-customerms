@@ -13,12 +13,12 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
             [
                 new()
                 {
-                    ID = 1,
+                    ID = new Guid("b1803d37-f260-4135-afb2-b44ae26c58ed"),
                     Definition = "Admin"
                 },
                 new()
                 {
-                    ID = 2,
+                    ID = new Guid("0910659f-670a-47d2-aa00-6a343dbaae48"),
                     Definition = "Member"
                 }
             ]);

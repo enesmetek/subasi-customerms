@@ -11,7 +11,7 @@ namespace Subasi.CustomerMS.API.Core.Domain.Concrete
         public DateTime? TokenCreated { get; set; }
         public DateTime? TokenExpires { get; set; }
 
-        public int AppRoleID { get; set; }
+        public Guid AppRoleID { get; set; }
         public AppRole? AppRole { get; set; }
         public string? AppRoleName { get; set;}
     }

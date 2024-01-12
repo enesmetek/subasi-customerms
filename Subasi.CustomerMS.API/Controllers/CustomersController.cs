@@ -34,7 +34,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet("{id}")]
         [Authorize(Roles = "Admin, Member")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var result = await _mediator.Send(new GetCustomerQueryRequest(id));
             return result == null ? NotFound() : Ok(result);
@@ -55,7 +55,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Update(UpdateCustomerCommandRequest request, int id)
+        public async Task<IActionResult> Update(UpdateCustomerCommandRequest request, Guid id)
         {
             if (id != request.ID)
             {
@@ -76,7 +76,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeleteCustomerCommandRequest(id));
             if(result.IsSucceed)

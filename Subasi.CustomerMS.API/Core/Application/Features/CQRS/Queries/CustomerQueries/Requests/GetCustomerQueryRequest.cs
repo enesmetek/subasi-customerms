@@ -5,10 +5,10 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.CustomerQ
 {
     public class GetCustomerQueryRequest : IRequest<CustomerQueryResponse>
     {
-        public GetCustomerQueryRequest(int id)
+        public GetCustomerQueryRequest(Guid id)
         {
             ID = id;
         }
-        public int ID { get; set; }
+        public Guid ID { get; set; }
     }
 }

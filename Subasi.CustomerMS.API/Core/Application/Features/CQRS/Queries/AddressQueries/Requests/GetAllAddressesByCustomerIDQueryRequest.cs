@@ -5,10 +5,10 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.AddressQu
 {
     public class GetAllAddressesByCustomerIDQueryRequest : IRequest<List<AddressQueryResponse>>
     {
-        public GetAllAddressesByCustomerIDQueryRequest(int id)
+        public GetAllAddressesByCustomerIDQueryRequest(Guid id)
         {
             ID = id;
         }
-        public int ID { get; set; }
+        public Guid ID { get; set; }
     }
 }

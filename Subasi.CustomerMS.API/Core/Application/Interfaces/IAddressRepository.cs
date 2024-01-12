@@ -5,6 +5,6 @@ namespace Subasi.CustomerMS.API.Core.Application.Interfaces
 {
     public interface IAddressRepository : IRepository<Address>
     {
-        Task<List<Address>?> GetAllAddressesByCustomerID(int id);
+        Task<List<Address>?> GetAllAddressesByCustomerID(Guid id);
     }
 }

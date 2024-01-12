@@ -9,7 +9,6 @@ using Subasi.CustomerMS.API.Infrastructure.Enums;
 using Subasi.CustomerMS.API.Infrastructure.Services;
 using Subasi.CustomerMS.API.Infrastructure.Tools;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -51,7 +50,7 @@ namespace Subasi.CustomerMS.API.Controllers
                     Username = request.Username,
                     PasswordHash = passwordHash,
                     PasswordSalt = passwordSalt,
-                    AppRoleID = (int)RoleType.Member,
+                    AppRoleID = new Guid("0910659f-670a-47d2-aa00-6a343dbaae48"),
                     AppRoleName = "Member"  
                 };
                 
@@ -90,13 +89,11 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpPost("RefreshToken")]
-        public async Task<ActionResult<string>> RefreshToken()
+        public async Task<ActionResult<string>> RefreshToken(string refreshToken)
         {
-            var username = Request.Cookies["username"];
-            var user = await _appUserRepository.GetByFilterAsync(x => x.Username == username);
-            var refreshToken = Request.Cookies["refreshToken"];
+            var user = await _appUserRepository.GetByFilterAsync(x => x.RefreshToken == refreshToken);
 
-            if (!user.RefreshToken.Equals(refreshToken))
+            if (user == null)
             {
                 return Unauthorized("Invalid Refresh Token.");
             }
@@ -106,12 +103,6 @@ namespace Subasi.CustomerMS.API.Controllers
             }
             string token = CreateToken(user);
             var newRefreshToken = GenerateRefreshToken();
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Expires = newRefreshToken.Expires
-            };
-            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
 
             user.RefreshToken = newRefreshToken.Token;
             user.TokenCreated = newRefreshToken.Created;

@@ -13,7 +13,7 @@ namespace Subasi.CustomerMS.API.Persistance.Repositories
             _context = context;
         }
 
-       public async Task<List<Address>?> GetAllAddressesByCustomerID(int id)
+       public async Task<List<Address>?> GetAllAddressesByCustomerID(Guid id)
         {
             return await _context.Set<Address>().Where(x => x.CustomerID == id).AsNoTracking().ToListAsync();
         }

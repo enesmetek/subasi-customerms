@@ -5,10 +5,10 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressC
 {
     public class DeleteAddressCommandRequest : IRequest<DeleteAddressCommandResponse>
     {
-        public DeleteAddressCommandRequest(int id)
+        public DeleteAddressCommandRequest(Guid id)
         {
             ID = id;
         }
-        public int ID { get; set; } 
+        public Guid ID { get; set; } 
     }
 }

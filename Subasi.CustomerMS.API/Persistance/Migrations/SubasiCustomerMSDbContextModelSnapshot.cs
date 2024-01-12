@@ -24,11 +24,9 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
 
             modelBuilder.Entity("Subasi.CustomerMS.API.Core.Domain.Concrete.Address", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AddressLine")
                         .IsRequired()
@@ -39,8 +37,8 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CustomerID")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CustomerID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("District")
                         .IsRequired()
@@ -61,37 +59,37 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            ID = new Guid("ffab8c77-239f-4d24-ba12-5d9aca99dbb4"),
                             AddressLine = "Yavrukus St. No:19/1",
                             AddressType = "Home",
-                            CustomerID = 1,
+                            CustomerID = new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"),
                             District = "Sisli",
                             Province = "Istanbul"
                         },
                         new
                         {
-                            ID = 2,
+                            ID = new Guid("c1b4eeb9-dfec-4e38-b0e8-311db9edfec4"),
                             AddressLine = "Lalegul St. No:5",
                             AddressType = "Office",
-                            CustomerID = 1,
+                            CustomerID = new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"),
                             District = "Kagithane",
                             Province = "Istanbul"
                         },
                         new
                         {
-                            ID = 3,
+                            ID = new Guid("1f4cba7e-dd74-4e76-9a92-ca766a4b70d7"),
                             AddressLine = "Ali Riza Efendi St. No:22",
                             AddressType = "Home",
-                            CustomerID = 2,
+                            CustomerID = new Guid("58a451ed-ae3e-40fe-b118-708c0f9872f4"),
                             District = "Kesan",
                             Province = "Edirne"
                         },
                         new
                         {
-                            ID = 4,
+                            ID = new Guid("7aff0742-36d6-4630-b1b4-68538ad56d64"),
                             AddressLine = "Seher St. No:16/60",
                             AddressType = "Home",
-                            CustomerID = 6,
+                            CustomerID = new Guid("611165a4-b4c1-4ce4-aca5-2d70ee35db5a"),
                             District = "Maltepe",
                             Province = "Istanbul"
                         });
@@ -99,11 +97,9 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
 
             modelBuilder.Entity("Subasi.CustomerMS.API.Core.Domain.Concrete.AppRole", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Definition")
                         .HasColumnType("nvarchar(max)");
@@ -115,26 +111,24 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            ID = new Guid("b1803d37-f260-4135-afb2-b44ae26c58ed"),
                             Definition = "Admin"
                         },
                         new
                         {
-                            ID = 2,
+                            ID = new Guid("0910659f-670a-47d2-aa00-6a343dbaae48"),
                             Definition = "Member"
                         });
                 });
 
             modelBuilder.Entity("Subasi.CustomerMS.API.Core.Domain.Concrete.AppUser", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("AppRoleID")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AppRoleID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AppRoleName")
                         .HasColumnType("nvarchar(max)");
@@ -168,11 +162,9 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
 
             modelBuilder.Entity("Subasi.CustomerMS.API.Core.Domain.Concrete.Customer", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -201,7 +193,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            ID = new Guid("46e61ab0-946a-4e6f-901b-9cc4a919c748"),
                             Email = "emkafali@gmail.com",
                             FirstName = "Enes Mete",
                             LastName = "Kafali",
@@ -209,7 +201,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                         },
                         new
                         {
-                            ID = 2,
+                            ID = new Guid("58a451ed-ae3e-40fe-b118-708c0f9872f4"),
                             Email = "tktaskiran@gmail.com",
                             FirstName = "Tolga Kagan",
                             LastName = "Taskiran",
@@ -217,7 +209,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                         },
                         new
                         {
-                            ID = 3,
+                            ID = new Guid("7b6d363e-6fe9-4955-b8bb-36b4d535e3a6"),
                             Email = "temelatanc@gmail.com",
                             FirstName = "Can",
                             LastName = "Temelatan",
@@ -225,7 +217,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                         },
                         new
                         {
-                            ID = 4,
+                            ID = new Guid("29127229-8503-4e7b-b91f-249ef2a6161c"),
                             Email = "yildirimgul@gmail.com",
                             FirstName = "Yildirim",
                             LastName = "Gul",
@@ -233,7 +225,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                         },
                         new
                         {
-                            ID = 5,
+                            ID = new Guid("22d85348-00dc-4ec4-a5f4-e7db6dc5c652"),
                             Email = "kafali22@gmail.com",
                             FirstName = "Mustafa",
                             LastName = "Kafali",
@@ -241,7 +233,7 @@ namespace Subasi.CustomerMS.API.Persistance.Migrations
                         },
                         new
                         {
-                            ID = 6,
+                            ID = new Guid("611165a4-b4c1-4ce4-aca5-2d70ee35db5a"),
                             Email = "mert@outlook.com",
                             FirstName = "Mert",
                             LastName = "Kafali",

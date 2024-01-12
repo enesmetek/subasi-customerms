@@ -5,11 +5,11 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.Customer
 {
     public class DeleteCustomerCommandRequest : IRequest<DeleteCustomerCommandResponse>
     {
-        public DeleteCustomerCommandRequest(int id)
+        public DeleteCustomerCommandRequest(Guid id)
         {
             ID = id;
         }
 
-        public int ID { get; set; }
+        public Guid ID { get; set; }
     }
 }

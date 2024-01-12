@@ -25,8 +25,8 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
             builder.HasOne(x => x.Customer).WithMany(x => x.Addresses).HasForeignKey(x => x.CustomerID);
 
             // Data Seed
-            builder.HasData(new Address[]
-            {
+            builder.HasData(
+            [
                 new()
                 {
                     ID = 1,
@@ -63,7 +63,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                     CustomerID = 6,
                     AddressType = AddressType.Home,
                 }
-            });
+            ]);
         }
     }
 }

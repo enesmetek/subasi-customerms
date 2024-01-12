@@ -20,8 +20,8 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
             builder.Property(x => x.PhoneNumber).HasMaxLength(50);
 
             // Data Seed
-            builder.HasData(new Customer[]
-            {
+            builder.HasData(
+            [
                 new()
                 {
                     ID = 1,
@@ -70,7 +70,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
                     Email = "mert@outlook.com",
                     PhoneNumber = "546-297-5518"
                 }
-            });
+            ]);
         }
     }
 }

@@ -47,5 +47,10 @@ namespace Subasi.CustomerMS.API.Persistance.Repositories
             _context.Set<T>().Update(updatedEntity);
             await _context.SaveChangesAsync();
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

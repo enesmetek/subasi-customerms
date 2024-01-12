@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Requests;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.AddressQueries.Requests;
@@ -24,6 +25,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> List()
         {
             var result = await _mediator.Send(new GetAllAddressesQueryRequest());
@@ -32,6 +34,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]/{id}")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _mediator.Send(new GetAddressQueryRequest(id));
@@ -40,6 +43,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet]
         [Route("api/Customers/{id}/[controller]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetByCustomerID(int id)
         {
             var result = await _mediator.Send(new GetAllAddressesByCustomerIDQueryRequest(id));
@@ -48,6 +52,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpPost]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateAddressCommandRequest request)
         {
             var result = _createAddressCommandRequestValidator.Validate(request);
@@ -61,6 +66,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpPut]
         [Route("api/[controller]/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(UpdateAddressCommandRequest request, int id)
         {
             if (id != request.ID)
@@ -82,13 +88,13 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpDelete]
         [Route("api/[controller]/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteAddressCommandRequest(id));
             if(result.IsSucceed)
             {
-                return NoContent();
-                
+                return NoContent();  
             }
             return NotFound();
         }

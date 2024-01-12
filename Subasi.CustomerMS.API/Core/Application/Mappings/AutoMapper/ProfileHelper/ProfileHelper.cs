@@ -9,7 +9,8 @@ namespace Subasi.CustomerMS.API.Core.Application.Mappings.AutoMapper.ProfileHelp
             return new List<Profile>
             {
                 new CustomerProfile(),
-                new AddressProfile()
+                new AddressProfile(),
+                new RefreshTokenProfile()
             };
         }
     }

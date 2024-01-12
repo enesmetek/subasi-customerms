@@ -11,5 +11,6 @@ namespace Subasi.CustomerMS.API.Core.Application.Interface
         Task CreateAsync(T entity);
         Task UpdateAsync(T updatedEntity);
         Task DeleteAsync(T entity);
+        Task SaveChangesAsync();
     }
 }

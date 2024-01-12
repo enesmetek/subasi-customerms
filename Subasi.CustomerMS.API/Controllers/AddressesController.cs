@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Requests;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.AddressQueries.Requests;
@@ -24,6 +25,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> List()
         {
             var result = await _mediator.Send(new GetAllAddressesQueryRequest());
@@ -32,6 +34,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet]
         [Route("api/[controller]/{id}")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _mediator.Send(new GetAddressQueryRequest(id));
@@ -40,6 +43,7 @@ namespace Subasi.CustomerMS.API.Controllers
 
         [HttpGet]
         [Route("api/Customers/{id}/[controller]")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> GetByCustomerID(int id)
         {
             var result = await _mediator.Send(new GetAllAddressesByCustomerIDQueryRequest(id));
@@ -47,6 +51,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("api/[controller]")]
         public async Task<IActionResult> Create(CreateAddressCommandRequest request)
         {
@@ -60,6 +65,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("api/[controller]/{id}")]
         public async Task<IActionResult> Update(UpdateAddressCommandRequest request, int id)
         {
@@ -81,6 +87,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("api/[controller]/{id}")]
         public async Task<IActionResult> Delete(int id)
         {

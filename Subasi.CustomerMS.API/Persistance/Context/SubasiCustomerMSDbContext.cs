@@ -11,11 +11,15 @@ namespace Subasi.CustomerMS.API.Persistance.Context
         }
 
         public DbSet<Address>? Addresses => this.Set<Address>();
-        public DbSet<Customer>?  Customers => this.Set<Customer>();
+        public DbSet<AppRole>? AppRoles => this.Set<AppRole>();
+        public DbSet<AppUser>? AppUsers => this.Set<AppUser>();
+        public DbSet<Customer>? Customers => this.Set<Customer>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AddressConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             base.OnModelCreating(modelBuilder);
         }

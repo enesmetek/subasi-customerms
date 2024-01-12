@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.CustomerCommands.Requests;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.CustomerQueries.Requests;
@@ -24,6 +25,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> List()
         {
             var result = await _mediator.Send(new GetAllCustomersQueryRequest());
@@ -31,6 +33,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Member")]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _mediator.Send(new GetCustomerQueryRequest(id));
@@ -38,6 +41,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateCustomerCommandRequest request)
         {
             var result = _createCustomerCommandRequestValidator.Validate(request);
@@ -50,6 +54,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(UpdateCustomerCommandRequest request, int id)
         {
             if (id != request.ID)
@@ -70,6 +75,7 @@ namespace Subasi.CustomerMS.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _mediator.Send(new DeleteCustomerCommandRequest(id));

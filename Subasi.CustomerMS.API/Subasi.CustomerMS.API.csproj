@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -30,7 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Tools\" />
     <Folder Include="Persistance\Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Subasi.CustomerMS.Common\Subasi.CustomerMS.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subasi.CustomerMS.API", "Subasi.CustomerMS.API\Subasi.CustomerMS.API.csproj", "{5C2DD7C2-D118-4120-9DD3-FFD5BA1A1D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subasi.CustomerMS.API", "Subasi.CustomerMS.API\Subasi.CustomerMS.API.csproj", "{5C2DD7C2-D118-4120-9DD3-FFD5BA1A1D5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subasi.CustomerMS.UI", "Subasi.CustomerMS.UI\Subasi.CustomerMS.UI.csproj", "{1631521F-6602-4EB2-9507-0E0D8C361715}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{690068B7-F2E6-48BE-8092-0273B7E1828F}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subasi.CustomerMS.Common", "Subasi.CustomerMS.Common\Subasi.CustomerMS.Common.csproj", "{36A0F5F9-CF48-4930-8F14-6968BEFBBE52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +24,14 @@ Global
 		{5C2DD7C2-D118-4120-9DD3-FFD5BA1A1D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C2DD7C2-D118-4120-9DD3-FFD5BA1A1D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C2DD7C2-D118-4120-9DD3-FFD5BA1A1D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1631521F-6602-4EB2-9507-0E0D8C361715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1631521F-6602-4EB2-9507-0E0D8C361715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1631521F-6602-4EB2-9507-0E0D8C361715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1631521F-6602-4EB2-9507-0E0D8C361715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A0F5F9-CF48-4930-8F14-6968BEFBBE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A0F5F9-CF48-4930-8F14-6968BEFBBE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A0F5F9-CF48-4930-8F14-6968BEFBBE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A0F5F9-CF48-4930-8F14-6968BEFBBE52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

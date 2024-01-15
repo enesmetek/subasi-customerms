@@ -44,7 +44,7 @@ namespace Subasi.CustomerMS.API.Controllers
         [HttpGet]
         [Route("api/Customers/{id}/[controller]")]
         [Authorize(Roles = "Admin, Member")]
-        public async Task<IActionResult> GetByCustomerID(Guid id)
+        public async Task<IActionResult> Addresses(Guid id)
         {
             var result = await _mediator.Send(new GetAllAddressesByCustomerIDQueryRequest(id));
             return Ok(result);

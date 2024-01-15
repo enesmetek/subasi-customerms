@@ -1,5 +1,5 @@
 ﻿using Subasi.CustomerMS.API.Core.Domain.Abstract;
-using Subasi.CustomerMS.API.Core.Domain.Enums;
+using Subasi.CustomerMS.Common;
 
 namespace Subasi.CustomerMS.API.Core.Domain.Concrete
 {

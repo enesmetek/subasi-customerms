@@ -1,0 +1,21 @@
+﻿@model List<CustomerListModel>
+@{
+    Layout = "_DevExtremeLayout";
+    ViewData["Title"] = "Customers";
+}
+
+@(Html.DevExtreme().DataGrid<CustomerListModel>()
+    .DataSource(Model)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.ID);
+
+        columns.AddFor(m => m.FirstName);
+
+        columns.AddFor(m => m.LastName);
+
+        columns.AddFor(m => m.Email);
+
+        columns.AddFor(m => m.PhoneNumber); 
+    })
+)

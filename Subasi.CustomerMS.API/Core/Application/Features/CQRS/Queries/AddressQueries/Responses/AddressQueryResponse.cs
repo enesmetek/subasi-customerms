@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Subasi.CustomerMS.API.Core.Domain.Enums;
+using Subasi.CustomerMS.Common;
 
 namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.AddressQueries.Responses
 {
     public class AddressQueryResponse
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public AddressType AddressType { get; set; }

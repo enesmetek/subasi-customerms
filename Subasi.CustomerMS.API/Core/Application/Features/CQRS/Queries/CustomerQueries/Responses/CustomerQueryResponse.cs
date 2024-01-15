@@ -4,7 +4,7 @@ namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Queries.CustomerQ
 {
     public class CustomerQueryResponse
     {
-        public int ID { get; set; } 
+        public Guid ID { get; set; } 
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Email { get; set; }

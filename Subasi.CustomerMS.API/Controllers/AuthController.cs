@@ -5,9 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using Subasi.CustomerMS.API.Core.Application.Interface;
 using Subasi.CustomerMS.API.Core.Domain.Concrete;
 using Subasi.CustomerMS.API.Infrastructure;
-using Subasi.CustomerMS.API.Infrastructure.Enums;
 using Subasi.CustomerMS.API.Infrastructure.Services;
-using Subasi.CustomerMS.API.Infrastructure.Tools;
+using Subasi.CustomerMS.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -70,13 +69,6 @@ namespace Subasi.CustomerMS.API.Controllers
                 string token = CreateToken(user);
 
                 var refreshToken = GenerateRefreshToken();
-                var cookieOptions = new CookieOptions
-                {
-                    HttpOnly = true,
-                    Expires = refreshToken.Expires
-                };
-                Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
-                Response.Cookies.Append("username", user.Username, cookieOptions);
 
                 user.RefreshToken = refreshToken.Token;
                 user.TokenCreated = refreshToken.Created;
@@ -125,11 +117,11 @@ namespace Subasi.CustomerMS.API.Controllers
 
         private string CreateToken(AppUser user)
         {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.AppRoleName)
-            };
+            List<Claim> claims =
+            [
+                new(ClaimTypes.Name, user.Username),
+                new(ClaimTypes.Role, user.AppRoleName)
+            ];
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWTDefaults.Key));
 

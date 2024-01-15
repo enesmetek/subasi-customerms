@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Subasi.CustomerMS.API.Core.Domain.Concrete;
-using Subasi.CustomerMS.API.Core.Domain.Enums;
+using Subasi.CustomerMS.Common;
 
 namespace Subasi.CustomerMS.API.Persistance.Configurations
 {
@@ -19,7 +19,7 @@ namespace Subasi.CustomerMS.API.Persistance.Configurations
             builder.Property(x => x.CustomerID).IsRequired();
 
             // Enum Conversion
-            builder.Property(x => x.AddressType).HasConversion(y => y.ToString(), y => Enum.Parse<AddressType>(y));
+            //builder.Property(x => x.AddressType).HasConversion(y => y.ToString(), y => Enum.Parse<AddressType>(y));
 
             // Relations
             builder.HasOne(x => x.Customer).WithMany(x => x.Addresses).HasForeignKey(x => x.CustomerID);

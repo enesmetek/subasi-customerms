@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Responses;
-using Subasi.CustomerMS.API.Core.Domain.Enums;
+using Subasi.CustomerMS.Common;
 
 namespace Subasi.CustomerMS.API.Core.Application.Features.CQRS.Commands.AddressCommands.Requests
 {

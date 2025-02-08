@@ -1,125 +1,102 @@
-# Subasi Customer MS Web API 
+# Subasi Customer Management System (CustomerMS)
 
-A Web API for test case builded on .NET Core 6. MediatR and CQRS patterns implemented.
+A Web API built on **.NET Core 6**, implementing **MediatR** and **CQRS** patterns for efficient customer management.
 
+---
 
-## Road Map
+## 📌 Architectural Overview
 
-#### Code-First
-- Created the database in LocalDB using the Code First method by making the necessary configurations.
+This project demonstrates a customer management system focusing on scalable and maintainable architecture. Key features include:
 
-#### Generic Repository
+- **Code-First Approach**: Utilizes Entity Framework's Code-First methodology for database creation and management.
+- **Generic Repository Pattern**: Implements a generic repository for streamlined data access operations.
+- **MediatR and CQRS**: Applies MediatR to facilitate the Command Query Responsibility Segregation pattern.
+- **AutoMapper**: Simplifies object-object mapping.
+- **FluentValidation**: Ensures robust input validation.
+- **Global Exception Handling Middleware**: Provides centralized error handling.
 
-- Set up a Generic Repository structure for database operations, and I performed Include and Foreign Key queries through the Customer Repository and Address Repository, which I inherited from the Generic Repository.
+---
 
-#### MediatR and CQRS Patterns
+## 🏗️ Project Components
 
-- I performed service operations via MediatR and CQRS patterns.
+### 🌐 Subasi.CustomerMS.API
 
-#### Controllers and Responses
+The **Subasi.CustomerMS.API** project serves as the main application, handling HTTP requests and responses. It is structured to promote separation of concerns and adheres to best practices in API development.
 
-- Returned the necessary responses from the controllers by adhering to the endpoints that specified in the test case.
+---
 
-#### AutoMapper and Fluent Validation
+## 🚀 Running the Project Locally
 
-- Used Fluent Validation for validation processes and AutoMapper for mapping processes.
+### 📌 Prerequisites
 
-#### Global Exception Handling Middleware 
+- **.NET 6.0 SDK** installed on your system.
+- **SQL Server** or **LocalDB** for database operations.
 
-- Finally, took server errors under control through a Global Exception Handling Middleware.
-## Run Locally
+### 🔧 Setup Instructions
 
-#### Prerequisites
-- Git
-- .NET 6.0
-- SQL Server 
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/enesmetek/subasi-customerms.git
+   ```
+2. **Navigate into the project directory**:
+   ```sh
+   cd subasi-customerms
+   ```
+3. **Restore dependencies**:
+   ```sh
+   dotnet restore
+   ```
+4. **Update the database**:
+   ```sh
+   dotnet ef database update --project Subasi.CustomerMS.API
+   ```
+5. **Build the solution**:
+   ```sh
+   dotnet build
+   ```
+6. **Run the application**:
+   ```sh
+   dotnet run --project Subasi.CustomerMS.API
+   ```
 
-#### Clone the project
+   The API will be accessible at `https://localhost:5001` by default.
 
-```bash
-  git clone https://github.com/enesmetek/Subasi.CustomerMS.git
-```
+---
 
-#### Change direction into API folder
+## 📡 API Endpoints
 
-```bash
-  cd .\Subasi.CustomerMS.API
-```
+Below are the available endpoints in **Subasi.CustomerMS.API**:
 
-#### Build 
+| HTTP Method | Endpoint                 | Description               |
+|-------------|--------------------------|---------------------------|
+| `GET`       | `/api/customers`         | Retrieve all customers    |
+| `GET`       | `/api/customers/{id}`    | Retrieve a specific customer by ID |
+| `POST`      | `/api/customers`         | Create a new customer     |
+| `PUT`       | `/api/customers/{id}`    | Update an existing customer |
+| `DELETE`    | `/api/customers/{id}`    | Delete a customer         |
 
-```bash
-  dotnet build
-```
-#### dotnet ef installing  (if needed)
+---
 
-```bash
-  dotnet tool install --global dotnet-ef
-```
+## 📜 License
 
-#### Database update
+This project is licensed under the **MIT License**.
 
-```bash
-  dotnet ef database update
-```
-#### Run the project
+---
 
-```bash
-  dotnet run
-```
-  
-## API Endpoints
+## 🤝 Contributing
 
-#### Lists All Customers
+Contributions are welcome! Feel free to submit a pull request or open an issue.
 
-```http
-  GET /api/Customers
-```
-#### Get Customer
+---
 
-```http
-  GET /api/Customers/{id}
-```
-#### Get Addresses from Customer
+## 📧 Contact
 
-```http
-  GET /api/Customers/{id}/Addresses
-```
-#### Create Customer
-```http
-  POST /api/Customers
-```
-#### Update Customer
+For any questions or issues, please reach out via GitHub Issues or email me at **[emkafali@gmail.com]**.
 
-```http
-  PUT /api/Customers/{id}
-```
-#### Delete Customer
+---
 
-```http
-  DELETE /api/Customers/{id}
-```
-#### Lists All Addresses
+### 📢 Star the Repository ⭐
 
-```http
-  GET /api/Addresses
-```
-#### Get Address
+If you found this project useful, consider giving it a star on GitHub! 😊
 
-```http
-  GET /api/Addresses/{id}
-```
-#### Create Address
-```http
-  POST /api/Addresses
-```
-#### Update Addresses
-
-```http
-  PUT /api/Addresses/{id}/
-```
-#### Delete Address
-
-```http
-  DELETE /api/Addresses/{id}
-```
+---
